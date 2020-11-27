@@ -19,9 +19,9 @@ Create  react app `npx create-react-app <project name>`
 Create a file under src called `setupTests.js`
 
 
-```import { configure } from "enzyme";
+`import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });```
+configure({ adapter: new Adapter() });`
 
 Paste above code in `setupTests.js`
 
