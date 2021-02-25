@@ -1,24 +1,31 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import Home from "../Home";
+import Name from "../Name";
 import toJson from "enzyme-to-json";
-describe("<Home />", () => {
-  it("Renders without crashing", () => {
-    shallow(<Home />);
-  });
+import declareJSON from "../declareJSON";
 
-  it("Renders correctly", () => {
-    const component = shallow(<Home />);
-    expect(toJson(component)).toMatchSnapshot();
-  });
+for (let i = 0; i < declareJSON.length; i++) {
+  const Componentname = declareJSON[i].name;
+  const expectTest = declareJSON[i].expect;
+  describe(Componentname, () => {
+    it("Renders without crashing", () => {
+      shallow(<Componentname />);
+    });
 
-  it("Verify the text", () => {
-    const component = shallow(<Home />);
-    expect(component.contains("Hi there Arun")).toEqual(true);
-  });
+    it("Renders correctly", () => {
+      const component = shallow(<Componentname />);
+      expect(toJson(component)).toMatchSnapshot();
+    });
 
-  it("Renders check parent", () => {
-    const component = mount(<Home />);
-    expect(toJson(component)).toMatchSnapshot();
+    it("Verify the text", () => {
+      const component = shallow(<Componentname />);
+      expect(component.contains(expectTest));
+    });
+
+    it("Renders check parent", () => {
+      const component = mount(<Componentname />);
+      expect(toJson(component)).toMatchSnapshot();
+    });
   });
-});
+}
